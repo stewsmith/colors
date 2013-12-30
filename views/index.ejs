@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <head>
+    <head>
+        <script>
+            function passToBack(){
+                score = document.getElementById('inputValue').value;
+                socket.emit('scoreChange', score);
+                console.log('success');
+                return false;
+            }
+        </script>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="/socket.io/socket.io.js"></script>
@@ -11,5 +19,9 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <form onsubmit="passToBack(); return false;">
+        <input type="text" name="score" id='inputValue'>
+        <input type="submit" value="Submit">
+    </form>
   </body>
 </html>
