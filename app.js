@@ -33,30 +33,36 @@ server.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });
 
+app.get('/', routes.index);
+app.get('/collector', routes.collector);
+app.get('/users', user.list);
+
 var userCount = 0;
 var scoreSum = 0;
-
-app.get('/', routes.index);
-app.get('/users', user.list);
+var averageScore = 0;
 
 io.sockets.on('connection', function(socket) {
     userCount++;
+    // when user leaves decrement userCount and
+    // remove his score from scoreSum
     socket.on('disconnect', function(sessionID) {
-        console.log('disconnecting');
         scoreSum -= parseInt(socket["currScore"]);
-        console.log("scoreSum: " + scoreSum);
         userCount--;
     });
     socket.on('scoreChange', function(score) {
+        console.log("score: " + score)
         score = parseInt(score, 10);
+        console.log("scoreparsed: " + score)
         if(score) {
-            console.log("got it: " + score)
             if(socket["currScore"]){
                 scoreSum -= parseInt(socket["currScore"]);
             }
             scoreSum += score;
+            console.log("scoreSum:" + scoreSum);
             socket["currScore"] = score;
-            console.log("scoreSum: " + scoreSum);
+            averageScore = scoreSum / userCount;
+            console.log("averageScore: " + averageScore);
+            socket.broadcast.emit('averageScore', averageScore);
         }
     });
 });
