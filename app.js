@@ -46,16 +46,16 @@ io.sockets.on('connection', function(socket) {
     // when user leaves decrement userCount and
     // remove his score from scoreSum
     socket.on('disconnect', function(sessionID) {
-        scoreSum -= parseInt(socket["currScore"]);
+        scoreSum -= parseFloat(socket["currScore"]);
         userCount--;
     });
     socket.on('scoreChange', function(score) {
         console.log("score: " + score)
-        score = parseInt(score, 10);
+        score = parseFloat(score, 10);
         console.log("scoreparsed: " + score)
-        if(score) {
+        if(! isNaN(score)) {
             if(socket["currScore"]){
-                scoreSum -= parseInt(socket["currScore"]);
+                scoreSum -= parseFloat(socket["currScore"]);
             }
             scoreSum += score;
             console.log("scoreSum:" + scoreSum);
