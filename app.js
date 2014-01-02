@@ -37,32 +37,38 @@ app.get('/', routes.index);
 app.get('/collector', routes.collector);
 app.get('/users', user.list);
 
-var userCount = 0;
+var userCount = -1; //accounts for collector -- better way needed
 var scoreSum = 0;
 var averageScore = 0;
 
 io.sockets.on('connection', function(socket) {
     userCount++;
+    //user scrolled, update everything
+    socket.on('scoreChange', function(score) {
+        socket.get('sessionID', function(err, sessionID) {
+            score = parseFloat(score, 10);
+            if(! isNaN(score)) {
+                if(socket["currScore"]){
+                    scoreSum -= parseFloat(socket["currScore"]);
+                }
+                scoreSum += score;
+                socket["currScore"] = score;
+                averageScore = scoreSum / userCount;
+                var avgPackage = {"avg": averageScore};
+                socket.broadcast.to(sessionID).emit('averageScore', avgPackage);
+            }
+        });
+    });
+    // Set Session ID
+    socket.on('join', function(sessionID) {
+        socket.set('sessionID', sessionID, function() {
+            socket.emit('sessionID set');
+        });
+    });
     // when user leaves decrement userCount and
     // remove his score from scoreSum
     socket.on('disconnect', function(sessionID) {
         scoreSum -= parseFloat(socket["currScore"]);
         userCount--;
     });
-    socket.on('scoreChange', function(score) {
-        console.log("score: " + score)
-        score = parseFloat(score, 10);
-        console.log("scoreparsed: " + score)
-        if(! isNaN(score)) {
-            if(socket["currScore"]){
-                scoreSum -= parseFloat(socket["currScore"]);
-            }
-            scoreSum += score;
-            console.log("scoreSum:" + scoreSum);
-            socket["currScore"] = score;
-            averageScore = scoreSum / userCount;
-            console.log("averageScore: " + averageScore);
-            socket.broadcast.emit('averageScore', averageScore);
-        }
     });
-});
