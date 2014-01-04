@@ -26,49 +26,43 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+    app.use(express.errorHandler());
 }
 
 server.listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port'));
 });
 
 app.get('/', routes.index);
 app.get('/collector', routes.collector);
 app.get('/users', user.list);
 
-var userCount = -1; //accounts for collector -- better way needed
-var scoreSum = 0;
-var averageScore = 0;
+var sessions = {};
 
 io.sockets.on('connection', function(socket) {
-    userCount++;
-    //user scrolled, update everything
+    //user scrolled, update score and average score
     socket.on('scoreChange', function(score) {
         socket.get('sessionID', function(err, sessionID) {
             score = parseFloat(score, 10);
-            if(! isNaN(score)) {
-                if(socket["currScore"]){
-                    scoreSum -= parseFloat(socket["currScore"]);
-                }
-                scoreSum += score;
-                socket["currScore"] = score;
-                averageScore = scoreSum / userCount;
-                var avgPackage = {"avg": averageScore};
-                socket.broadcast.to(sessionID).emit('averageScore', avgPackage);
-            }
+            console.log("Score  is: " + score);
         });
     });
     // Set Session ID
     socket.on('join', function(sessionID) {
         socket.set('sessionID', sessionID, function() {
-            socket.emit('sessionID set');
+            if(socket.join(sessionID)) {
+                console.log("just joined: " + sessionID);
+                socket.broadcast.to(sessionID).emit('joined', sessionID);
+            }
         });
+    });
+    // Increment user count
+    socket.on('userJoin', function() {
+        console.log("userCount");
     });
     // when user leaves decrement userCount and
     // remove his score from scoreSum
     socket.on('disconnect', function(sessionID) {
         scoreSum -= parseFloat(socket["currScore"]);
-        userCount--;
     });
-    });
+});
