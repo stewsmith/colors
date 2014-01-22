@@ -44,25 +44,37 @@ io.sockets.on('connection', function(socket) {
     socket.on('scoreChange', function(score) {
         socket.get('sessionID', function(err, sessionID) {
             score = parseFloat(score, 10);
-            console.log("Score  is: " + score);
+            if(! isNaN(score)) {
+                console.log("score is: " + score);
+                //if(socket["currScore"]){
+                    //scoreSum -= parseFloat(socket["currScore"]);
+                //}
+                //scoreSum += score;
+                //socket["currScore"] = score;
+                //console.log("Score: " + scoreSum)
+                //averageScore = scoreSum / userCount;
+                //console.log("Average Score: " + averageScore);
+                //socket.broadcast.to(sessionID).emit('averageScore', averageScore);
+            }
         });
     });
     // Set Session ID
     socket.on('join', function(sessionID) {
         socket.set('sessionID', sessionID, function() {
             if(socket.join(sessionID)) {
-                console.log("just joined: " + sessionID);
-                socket.broadcast.to(sessionID).emit('joined', sessionID);
+                console.log("just created : " + sessionID);
+                socket.broadcast.to(sessionID).emit('joined-to', sessionID);
             }
         });
     });
     // Increment user count
-    socket.on('userJoin', function() {
-        console.log("userCount");
+    socket.on('userJoin', function(sessionID) {
+        console.log("sessionID: " + sessionID);
     });
     // when user leaves decrement userCount and
     // remove his score from scoreSum
     socket.on('disconnect', function(sessionID) {
-        scoreSum -= parseFloat(socket["currScore"]);
+        //scoreSum -= parseFloat(socket["currScore"]);
+        socket.userCount--;
     });
 });

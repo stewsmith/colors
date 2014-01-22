@@ -7,6 +7,6 @@ function joinSession(sessionID) {
 
 function createSession() {
     var sessionID = Math.round(Math.random()*10000).toString();
-    console.log("sessionID: " + sessionID);
     socket.emit('join', sessionID);
+    window.location.href = 'collector';
 }
