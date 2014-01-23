@@ -37,7 +37,7 @@ app.get('/', routes.index);
 app.get('/collector', routes.collector);
 app.get('/users', user.list);
 
-var sessions = {};
+var usersInRoom = {};
 
 io.sockets.on('connection', function(socket) {
     //user scrolled, update score and average score
@@ -62,20 +62,28 @@ io.sockets.on('connection', function(socket) {
     socket.on('join', function(sessionID) {
         socket.set('sessionID', sessionID, function() {
             if(socket.join(sessionID)) {
-                console.log("just created: " + sessionID);
-                io.sockets.in(sessionID).emit('joined-to', sessionID);
-                //socket.emit('joined-to', sessionID);
+                usersInRoom.sessionID = 0;
+                console.log("just created room: " + sessionID);
+                io.sockets.in(sessionID).emit('joined', sessionID);
             }
         });
     });
     // Increment user count
     socket.on('userJoin', function(sessionID) {
-        console.log("sessionID: " + sessionID);
+        socket.set('sessionID', sessionID, function() {
+            if(socket.join(sessionID)) {
+                usersInRoom.sessionID++;
+                console.log("usersInRoom: " + usersInRoom.sessionID);
+                io.sockets.in(sessionID).emit('joined', sessionID);
+            }
+        });
     });
     // when user leaves decrement userCount and
     // remove his score from scoreSum
     socket.on('disconnect', function(sessionID) {
-        //scoreSum -= parseFloat(socket["currScore"]);
-        socket.userCount--;
+            usersInRoom.sessionID--;
+            if(usersInRoom.sessionID < 0) {
+                delete usersInRoom.sessionID;
+            }
     });
 });

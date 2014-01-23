@@ -7,14 +7,9 @@ socket.on('averageScore', function(avg) {
     averageScore = parseFloat(avg);
 });
 
-socket.on('joined-to', function(sessionID) {
+socket.on('joined', function(sessionID) {
     console.log("joined-to received for: " + sessionID);
     $('#session').append(sessionID);
     $('#session').append("here");
 });
 
-socket.on('joined-emit', function(sessionID) {
-    console.log("sessionID: " + sessionID);
-    $('#session').append(sessionID);
-    $('#session').append("here");
-});
