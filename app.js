@@ -62,8 +62,9 @@ io.sockets.on('connection', function(socket) {
     socket.on('join', function(sessionID) {
         socket.set('sessionID', sessionID, function() {
             if(socket.join(sessionID)) {
-                console.log("just created : " + sessionID);
-                socket.broadcast.to(sessionID).emit('joined-to', sessionID);
+                console.log("just created: " + sessionID);
+                io.sockets.in(sessionID).emit('joined-to', sessionID);
+                //socket.emit('joined-to', sessionID);
             }
         });
     });
