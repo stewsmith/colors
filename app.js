@@ -35,7 +35,7 @@ server.listen(app.get('port'), function() {
 
 app.get('/', routes.index);
 app.get('/collector', routes.collector);
-app.get('/users', user.list);
+app.get('/user', routes.user);
 
 var usersInRoom = {};
 
@@ -51,10 +51,7 @@ io.sockets.on('connection', function(socket) {
                 //}
                 //scoreSum += score;
                 //socket["currScore"] = score;
-                //console.log("Score: " + scoreSum)
                 //averageScore = scoreSum / userCount;
-                //console.log("Average Score: " + averageScore);
-                //socket.broadcast.to(sessionID).emit('averageScore', averageScore);
             }
         });
     });
