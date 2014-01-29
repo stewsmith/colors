@@ -9,7 +9,5 @@ socket.on('averageScore', function(avg) {
 
 socket.on('joined', function(sessionID) {
     console.log("joined-to received for: " + sessionID);
-    $('#session').append(sessionID);
-    $('#session').append("here");
 });
 

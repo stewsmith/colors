@@ -2,7 +2,7 @@ var socket = io.connect('/');
 
 function joinSession(sessionID) {
     socket.emit('userJoin', sessionID);
-    window.location.href = 'user';
+    window.location.href = 'user?sessionID=' + sessionID;
 }
 
 function createSession() {

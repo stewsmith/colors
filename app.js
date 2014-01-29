@@ -37,50 +37,35 @@ app.get('/', routes.index);
 app.get('/collector', routes.collector);
 app.get('/user', routes.user);
 
-var usersInRoom = {};
+var rooms = {};
 
 io.sockets.on('connection', function(socket) {
     //user scrolled, update score and average score
-    socket.on('scoreChange', function(score) {
-        socket.get('sessionID', function(err, sessionID) {
-            score = parseFloat(score, 10);
-            if(! isNaN(score)) {
-                console.log("score is: " + score);
-                //if(socket["currScore"]){
-                    //scoreSum -= parseFloat(socket["currScore"]);
-                //}
-                //scoreSum += score;
-                //socket["currScore"] = score;
-                //averageScore = scoreSum / userCount;
-            }
-        });
+    socket.on('scoreChange', function(obj) {
+        var score = parseFloat(obj.score, 10);
+        var sessionID = obj.sessionID;
+        console.log("score is: " + score);
+        rooms[sessionID][total] -= rooms[sessionID][socket.id];
+        rooms[sessionID][total] += score;
+        rooms[sessionID][socket.id] = score;
     });
     // Set Session ID
     socket.on('join', function(sessionID) {
-        socket.set('sessionID', sessionID, function() {
-            if(socket.join(sessionID)) {
-                usersInRoom.sessionID = 0;
-                console.log("just created room: " + sessionID);
-                io.sockets.in(sessionID).emit('joined', sessionID);
-            }
-        });
+        if(socket.join(sessionID)) {
+            rooms[sessionID] = {};
+            rooms[sessionID][total] = 0;
+            console.log("just created room: " + sessionID);
+        }
     });
     // Increment user count
     socket.on('userJoin', function(sessionID) {
-        socket.set('sessionID', sessionID, function() {
-            if(socket.join(sessionID)) {
-                usersInRoom.sessionID++;
-                console.log("usersInRoom: " + usersInRoom.sessionID);
-                io.sockets.in(sessionID).emit('joined', sessionID);
-            }
-        });
+        if(socket.join(sessionID)) {
+            console.log("socket id: " + socket.id);
+            rooms[sessionID][socket.id] = 0;
+        }
     });
     // when user leaves decrement userCount and
     // remove his score from scoreSum
     socket.on('disconnect', function(sessionID) {
-            usersInRoom.sessionID--;
-            if(usersInRoom.sessionID < 0) {
-                delete usersInRoom.sessionID;
-            }
     });
 });
