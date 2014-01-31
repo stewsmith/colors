@@ -44,7 +44,6 @@ io.sockets.on('connection', function(socket) {
     socket.on('scoreChange', function(obj) {
         var score = parseFloat(obj.score, 10);
         var sessionID = obj.sessionID;
-        console.log("score is: " + score);
         rooms[sessionID]["total"] -= rooms[sessionID][socket.id];
         rooms[sessionID]["total"] += score;
         rooms[sessionID][socket.id] = score;
@@ -52,6 +51,7 @@ io.sockets.on('connection', function(socket) {
     // Set Session ID
     socket.on('join', function(sessionID) {
         if(socket.join(sessionID)) {
+            console.log(typeof(sessionID));
             rooms[sessionID] = {};
             rooms[sessionID]["total"] = 0;
             console.log("just created room: " + sessionID);

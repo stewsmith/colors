@@ -16,7 +16,7 @@ function transformToAssocArray( prmstr ) {
 }
 
 var params = getSearchParameters();
-$('#sessionID').append('SessionID: ' + params.sessionID);
+$('#sessionID').append('sessionID: ' + params.sessionID);
 
 $(window).scroll(function() {
     passToBack($(document).scrollTop());
@@ -25,7 +25,8 @@ $(window).scroll(function() {
 function passToBack(position) {
     var docHeight = $(document).height();
     console.log(position / docHeight);
-    socket.emit('scoreChange', {"score": position / docHeight,
-    "SessionID": params.SessionID});
+    var obj = {"score": (position / docHeight),
+        "sessionID": params.sessionID};
+    socket.emit('scoreChange', obj);
     return false;
 }
