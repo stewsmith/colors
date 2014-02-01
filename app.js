@@ -44,14 +44,19 @@ io.sockets.on('connection', function(socket) {
     socket.on('scoreChange', function(obj) {
         var score = parseFloat(obj.score, 10);
         var sessionID = obj.sessionID;
-        rooms[sessionID]["total"] -= rooms[sessionID][socket.id];
+        if (rooms[sessionID][socket.id]) {
+            rooms[sessionID]["total"] -= rooms[sessionID][socket.id];
+        }
         rooms[sessionID]["total"] += score;
         rooms[sessionID][socket.id] = score;
+        //console.log(parseFloat(Object.keys(rooms[sessionID]).length - 1));
+        var average = parseFloat(rooms[sessionID]["total"]) / parseFloat(Object.keys(rooms[sessionID]).length - 1);
+        console.log("average is: " + average);
+        socket.broadcast.to(sessionID).emit('average', average);
     });
     // Set Session ID
-    socket.on('join', function(sessionID) {
+    socket.on('create', function(sessionID) {
         if(socket.join(sessionID)) {
-            console.log(typeof(sessionID));
             rooms[sessionID] = {};
             rooms[sessionID]["total"] = 0;
             console.log("just created room: " + sessionID);
@@ -60,8 +65,9 @@ io.sockets.on('connection', function(socket) {
     // Increment user count
     socket.on('userJoin', function(sessionID) {
         if(socket.join(sessionID)) {
-            console.log("socket id: " + socket.id);
-            rooms[sessionID][socket.id] = 0;
+            if (rooms[sessionID]) {
+                rooms[sessionID][socket.id] = 0;
+            }
         }
     });
     // when user leaves decrement userCount and
