@@ -49,11 +49,7 @@ io.sockets.on('connection', function(socket) {
         }
         rooms[sessionID]["total"] += score;
         rooms[sessionID][socket.id] = score;
-        for(property in rooms[sessionID]) {
-            console.log("prop: " + property + " || " + "value: " + rooms[sessionID][property]);
-        }
         var average = parseFloat(rooms[sessionID]["total"]) / ((Object.keys(rooms[sessionID]).length - 1)/2)
-        console.log("average is: " + average);
         socket.broadcast.to(sessionID).emit('average', average);
     });
     // Set Session ID
@@ -68,7 +64,6 @@ io.sockets.on('connection', function(socket) {
     socket.on('userJoin', function(sessionID) {
         if(socket.join(sessionID)) {
             if (rooms[sessionID]) {
-                console.log("sesh: " + socket.id);
                 rooms[sessionID][socket.id] = 0;
             }
         }
