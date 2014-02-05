@@ -44,13 +44,13 @@ io.sockets.on('connection', function(socket) {
     socket.on('scoreChange', function(obj) {
         var score = parseFloat(obj.score, 10);
         var sessionID = obj.sessionID;
-        if (rooms[sessionID][socket.id]) {
+        if (rooms[sessionID] && rooms[sessionID][socket.id] >= 0) {
             rooms[sessionID]["total"] -= rooms[sessionID][socket.id];
+            rooms[sessionID]["total"] += score;
+            rooms[sessionID][socket.id] = score;
+            var average = parseFloat(rooms[sessionID]["total"]) / ((Object.keys(rooms[sessionID]).length - 1)/2)
+            socket.broadcast.to(sessionID).emit('average', average);
         }
-        rooms[sessionID]["total"] += score;
-        rooms[sessionID][socket.id] = score;
-        var average = parseFloat(rooms[sessionID]["total"]) / ((Object.keys(rooms[sessionID]).length - 1)/2)
-        socket.broadcast.to(sessionID).emit('average', average);
     });
     // Set Session ID
     socket.on('create', function(sessionID) {
@@ -71,5 +71,7 @@ io.sockets.on('connection', function(socket) {
     // when user leaves decrement userCount and
     // remove his score from scoreSum
     socket.on('disconnect', function(sessionID) {
+        //rooms[sessionID]["total"] -= rooms[sessionID][socket.id];
+        //delete rooms[sessionID][socket.id]
     });
 });

@@ -11,3 +11,8 @@ body {
 a {
     color: #00B7FF;
 }
+
+#sessionID {
+    top: 0;
+    position: fixed
+}
