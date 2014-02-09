@@ -1,7 +1,6 @@
 var socket = io.connect('/');
 
 function joinSession(sessionID) {
-    socket.emit('userJoin', sessionID);
     window.location.href = 'user?sessionID=' + sessionID;
 }
 
@@ -14,9 +13,10 @@ function createSession() {
 }
 
 socket.on('average', function(average) {
+    console.log("average: " + average);
     var ending_color;
     if(average == 0) {
-        ending_color = new $.Color( 'rgb(255,0,0)' );
+        ending_color = new $.Color( 'rgb(0,255,0)' );
     }
     else if(average < 0.5) {
         ending_color = new $.Color( 'rgb(255,255,0)' );

@@ -14,7 +14,7 @@ var server = http.createServer(app)
 var io = require('socket.io').listen(server);
 
 // all environments
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 4000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(express.favicon());
@@ -45,11 +45,16 @@ io.sockets.on('connection', function(socket) {
         var score = parseFloat(obj.score, 10);
         var sessionID = obj.sessionID;
         if (rooms[sessionID] && rooms[sessionID][socket.id] >= 0) {
+            //console.log("old score: " + rooms[sessionID][socket.id]);
+            //console.log("new score: " + score);
             rooms[sessionID]["total"] -= rooms[sessionID][socket.id];
             rooms[sessionID]["total"] += score;
             rooms[sessionID][socket.id] = score;
-            var average = parseFloat(rooms[sessionID]["total"]) / ((Object.keys(rooms[sessionID]).length - 1)/2)
+            console.log(rooms[sessionID]["total"]);
+            console.log("len is " + (Object.keys(rooms[sessionID]).length - 1));
+            var average = parseFloat(rooms[sessionID]["total"] / ((Object.keys(rooms[sessionID]).length - 1)));
             socket.broadcast.to(sessionID).emit('average', average);
+            console.log("average is " + average);
         }
     });
     // Set Session ID
@@ -64,6 +69,7 @@ io.sockets.on('connection', function(socket) {
     socket.on('userJoin', function(sessionID) {
         if(socket.join(sessionID)) {
             if (rooms[sessionID]) {
+                console.log("userJoin: " + socket.id)
                 rooms[sessionID][socket.id] = 0;
             }
         }
