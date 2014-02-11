@@ -45,8 +45,6 @@ io.sockets.on('connection', function(socket) {
         var score = parseFloat(obj.score, 10);
         var sessionID = obj.sessionID;
         if (rooms[sessionID] && rooms[sessionID][socket.id] >= 0) {
-            //console.log("old score: " + rooms[sessionID][socket.id]);
-            //console.log("new score: " + score);
             rooms[sessionID]["total"] -= rooms[sessionID][socket.id];
             rooms[sessionID]["total"] += score;
             rooms[sessionID][socket.id] = score;
@@ -69,15 +67,19 @@ io.sockets.on('connection', function(socket) {
     socket.on('userJoin', function(sessionID) {
         if(socket.join(sessionID)) {
             if (rooms[sessionID]) {
-                console.log("userJoin: " + socket.id)
                 rooms[sessionID][socket.id] = 0;
             }
         }
     });
-    // when user leaves decrement userCount and
-    // remove his score from scoreSum
-    socket.on('disconnect', function(sessionID) {
-        //rooms[sessionID]["total"] -= rooms[sessionID][socket.id];
-        //delete rooms[sessionID][socket.id]
+    socket.on('disconnect', function() {
+        for (var room in rooms) {
+            var room_obj = rooms[room];
+            for (var prop in room_obj) {
+                if(room_obj.hasOwnProperty(prop) && prop === socket.id) {
+                    room_obj.total -= room_obj[prop];
+                    delete room_obj[prop];
+                }
+            }
+        }
     });
 });
