@@ -17,7 +17,7 @@ function transformToAssocArray( prmstr ) {
 
 var params = getSearchParameters();
 socket.emit('userJoin', params.sessionID);
-$('#sessionID').append('sessionID: ' + params.sessionID);
+$('#sessionID').append(params.sessionID);
 
 $(window).scroll(function() {
     passToBack($(document).scrollTop());

@@ -18,5 +18,8 @@ a {
 
 #sessionID {
     top: 0;
-    position: fixed
+    position: fixed;
+    top: 3em;
+    right: 3em;
+    font-size: 25px;
 }
