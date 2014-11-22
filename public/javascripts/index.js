@@ -1,8 +1,9 @@
 var socket = io.connect('/');
 
-function joinSession(sessionID) {
-    window.location.href = 'user?sessionID=' + sessionID;
-}
+$('#sessionForm').on('submit', function() {
+  var sessionId = $('#sessionInput').val();
+  window.location = 'user?sessionID=' + sessionID;
+});
 
 function createSession() {
     var sessionID = Math.round(Math.random()*10000).toString();
