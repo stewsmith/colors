@@ -31,3 +31,8 @@ socket.on('average', function(average) {
   }
   $('body').animate({ backgroundColor: ending_color }, 0);
 });
+
+socket.on('createStudent', function(sessionID) {
+  console.log('hi');
+  $('.students-container').prepend("<div class='student'>hi</div>");
+});
