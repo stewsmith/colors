@@ -12,6 +12,8 @@
   },
   "devDependencies": {
     "grunt": "^0.4.5",
+    "grunt-express": "^1.4.1",
+    "grunt-express-server": "^0.5.1",
     "grunt-sass": "^1.0.0"
   }
 }

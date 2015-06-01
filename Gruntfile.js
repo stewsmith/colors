@@ -11,9 +11,15 @@ module.exports = function(grunt) {
           'public/stylesheets/style.css': 'public/stylesheets/style.scss'
         }
       }
+    },
+
+    express: {
+      default_option: {}
     }
   });
-  grunt.loadNpmTasks('grunt-sass');
 
-  grunt.registerTask('default', ['sass']);
+  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-express');
+
+  grunt.registerTask('default', ['sass', 'express', 'express-keepalive']);
 };
