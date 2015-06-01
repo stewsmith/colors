@@ -13,13 +13,13 @@ module.exports = function(grunt) {
       }
     },
 
-    express: {
+    nodemon: {
       default_option: {}
     }
   });
 
   grunt.loadNpmTasks('grunt-sass');
-  grunt.loadNpmTasks('grunt-express');
+  grunt.loadNpmTasks('grunt-nodemon');
 
-  grunt.registerTask('default', ['sass', 'express', 'express-keepalive']);
+  grunt.registerTask('default', ['sass', 'nodemon']);
 };
