@@ -47,15 +47,14 @@ io.sockets.on('connection', function(socket) {
       rooms[sessionID][socket.id] = score;
       console.log(rooms[sessionID]["total"]);
       console.log("len is " + (Object.keys(rooms[sessionID]).length - 1));
-      var average = parseFloat(rooms[sessionID]["total"] / ((Object.keys(rooms[sessionID]).length - 1)));
       socket.broadcast.to(sessionID).emit('average', average);
-      console.log("average is " + average);
     }
   });
   // Set Session ID
   socket.on('create', function(sessionID) {
     if(socket.join(sessionID)) {
       rooms[sessionID] = {};
+      rooms[sessionID]['studentCount'] = 0;
       rooms[sessionID]["total"] = 0;
       console.log("just created room: " + sessionID);
     }
@@ -64,7 +63,8 @@ io.sockets.on('connection', function(socket) {
   socket.on('userJoin', function(sessionID) {
     if (socket.join(sessionID)) {
       if (rooms[sessionID]) {
-        socket.broadcast.to(sessionID).emit('createStudent');
+        rooms[sessionID]['studentCount']++;
+        socket.broadcast.to(sessionID).emit('createStudent', rooms[sessionID]['studentCount']);
         rooms[sessionID][socket.id] = 0;
       }
     }
