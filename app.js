@@ -37,25 +37,16 @@ app.get('/user', routes.user);
 var rooms = {};
 
 io.sockets.on('connection', function(socket) {
-  //user scrolled, update score and average score
+  //user scrolled, send rgb to teacher
   socket.on('scoreChange', function(obj) {
-    var score = parseFloat(obj.score, 10);
     var sessionID = obj.sessionID;
-    if (rooms[sessionID] && rooms[sessionID][socket.id] >= 0) {
-      rooms[sessionID]["total"] -= rooms[sessionID][socket.id];
-      rooms[sessionID]["total"] += score;
-      rooms[sessionID][socket.id] = score;
-      console.log(rooms[sessionID]["total"]);
-      console.log("len is " + (Object.keys(rooms[sessionID]).length - 1));
-      socket.broadcast.to(sessionID).emit('average', average);
-    }
+    socket.broadcast.to(sessionID).emit('rgb', obj.rgb);
   });
   // Set Session ID
   socket.on('create', function(sessionID) {
     if(socket.join(sessionID)) {
       rooms[sessionID] = {};
       rooms[sessionID]['studentCount'] = 0;
-      rooms[sessionID]["total"] = 0;
       console.log("just created room: " + sessionID);
     }
   });
@@ -65,7 +56,6 @@ io.sockets.on('connection', function(socket) {
       if (rooms[sessionID]) {
         rooms[sessionID]['studentCount']++;
         socket.broadcast.to(sessionID).emit('createStudent', rooms[sessionID]['studentCount']);
-        rooms[sessionID][socket.id] = 0;
       }
     }
   });
