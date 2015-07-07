@@ -1,6 +1,6 @@
 colors
 ======
 
-Setup:
-npm i
-node app.js
+Setup:  
+1. npm i  
+2. grunt  
