@@ -18,10 +18,9 @@ function transformToAssocArray( prmstr ) {
 var params = getSearchParameters();
 socket.emit('userJoin', params.sessionID);
 $('#sessionID').append(params.sessionID);
-var $body = $('body');
 
 $(window).scroll(function() {
-  var rgb = $body.css('background-color');
+  var rgb = $('body').css('background-color');
 
   socket.emit('scoreChange', {
     rgb: rgb,
