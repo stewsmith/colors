@@ -1,7 +1,7 @@
 var socket = io.connect('/');
 
-socket.on('rgb', function(rgb) {
-  console.log("rgb: " + rgb );
+socket.on('rgb', function(obj) {
+  $('#student-' + obj.studentId).css('background-color', obj.rgb);
 });
 
 socket.on('joined', function(sessionID) {

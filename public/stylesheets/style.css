@@ -10,11 +10,13 @@ h1 {
 ::-webkit-scrollbar {
   display: none; }
 
-#producer {
-  min-height: 2000px; }
+.student {
+  min-height: 2000px;
+}
 
 a {
-  color: #00B7FF; }
+  color: #00B7FF;
+}
 
 #sessionID {
   top: 0;

@@ -40,7 +40,7 @@ io.sockets.on('connection', function(socket) {
   //user scrolled, send rgb to teacher
   socket.on('scoreChange', function(obj) {
     var sessionID = obj.sessionID;
-    socket.broadcast.to(sessionID).emit('rgb', obj.rgb);
+    socket.broadcast.to(sessionID).emit('rgb', obj);
   });
   // Set Session ID
   socket.on('create', function(sessionID) {
@@ -55,6 +55,7 @@ io.sockets.on('connection', function(socket) {
     if (socket.join(sessionID)) {
       if (rooms[sessionID]) {
         rooms[sessionID]['studentCount']++;
+        socket.emit('ham', rooms[sessionID]['studentCount']);
         socket.broadcast.to(sessionID).emit('createStudent', rooms[sessionID]['studentCount']);
       }
     }
