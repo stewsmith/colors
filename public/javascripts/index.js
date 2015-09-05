@@ -15,5 +15,5 @@ $('#createSession').on('click', function(e) {
 });
 
 socket.on('createStudent', function(studentCount) {
-  $('.students-container').prepend("<div id='student-" + studentCount + "' class='student'>hi</div>");
+  $('.students-container').prepend("<div id='student-" + studentCount + "' class='student'></div>");
 });

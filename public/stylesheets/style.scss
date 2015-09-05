@@ -5,19 +5,32 @@ $lucidia: "Lucida Grande", Helvetica, Arial, sans-serif;
 body {
   padding: 50px;
   font: 14px $lucidia;
-  background-color: $green;
+  background-color: white;
 }
 
 h1 {
   font-family: $roboto;
   font-size: 8em;
+  margin-bottom: 0;
 }
 
 ::-webkit-scrollbar {
   display: none;
 }
 
+.students-container {
+  display: flex;
+}
+
 .student {
+  height: 250px;
+  width: 250px;
+  margin: 10px;
+  border-radius: 3px;
+  border: 3px solid black;
+}
+
+.student-scroller {
   min-height: 2000px;
 }
 
