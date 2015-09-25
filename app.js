@@ -39,36 +39,32 @@ var rooms = {};
 io.sockets.on('connection', function(socket) {
   //user scrolled, send rgb to teacher
   socket.on('scoreChange', function(obj) {
-    var sessionID = obj.sessionID;
-    socket.broadcast.to(sessionID).emit('rgb', obj);
+    var sessionId = obj.sessionId;
+    socket.broadcast.to(sessionId).emit('rgb', obj);
   });
   // Set Session ID
-  socket.on('create', function(sessionID) {
-    if(socket.join(sessionID)) {
-      rooms[sessionID] = {};
-      rooms[sessionID]['studentCount'] = 0;
-      console.log("just created room: " + sessionID);
+  socket.on('create', function(sessionId) {
+    if(socket.join(sessionId)) {
+      rooms[sessionId] = {};
+      rooms[sessionId]['studentCount'] = 0;
     }
   });
   // Increment user count
-  socket.on('userJoin', function(sessionID) {
-    if (socket.join(sessionID)) {
-      if (rooms[sessionID]) {
-        rooms[sessionID]['studentCount']++;
-        socket.emit('ham', rooms[sessionID]['studentCount']);
-        socket.broadcast.to(sessionID).emit('createStudent', rooms[sessionID]['studentCount']);
+  socket.on('userJoin', function(sessionId) {
+    if (socket.join(sessionId)) {
+      if (rooms[sessionId]) {
+        rooms[sessionId]['studentCount']++;
+        socket.studentId = rooms[sessionId]['studentCount'];
+        socket.sessionId = sessionId;
+        socket.emit('ham', rooms[sessionId]['studentCount']);
+        socket.broadcast.to(sessionId).emit('createStudent', rooms[sessionId]['studentCount']);
       }
     }
   });
   socket.on('disconnect', function() {
-    for (var room in rooms) {
-      var room_obj = rooms[room];
-      for (var prop in room_obj) {
-        if(room_obj.hasOwnProperty(prop) && prop === socket.id) {
-          room_obj.total -= room_obj[prop];
-          delete room_obj[prop];
-        }
-      }
+    if (rooms[socket.sessionId]) {
+      rooms[socket.sessionId]['studentCount']--;
+      socket.broadcast.emit('studentDisconnect', { studentId: socket.studentId, studentCount: rooms[socket.sessionId]['studentCount']} );
     }
   });
 });

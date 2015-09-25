@@ -1,12 +1,13 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: white; }
 
 h1 {
   font-family: "Roboto", sans-serif;
-  font-size: 8em;
-  margin-bottom: 0; }
+  font-size: 6em;
+  margin-bottom: 0;
+  text-align: center;
+  color: red; }
 
 ::-webkit-scrollbar {
   display: none; }

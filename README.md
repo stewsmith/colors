@@ -1,12 +1,13 @@
-colors
+Student Spectrum
 ======
+Student Spectrum allows you to visualize student understanding in real time!
 
-Setup:  
+### Setup:  
 1. npm i  
 2. grunt  
 
 ### TODO  
-1. Remove student block and update count on student exit
+1. Styling and design
 2. implement Grunt watch
 3. Nav
 4. Description on first visit

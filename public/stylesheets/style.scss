@@ -3,15 +3,16 @@ $roboto: 'Roboto', sans-serif;
 $lucidia: "Lucida Grande", Helvetica, Arial, sans-serif;
 
 body {
-  padding: 50px;
   font: 14px $lucidia;
   background-color: white;
 }
 
 h1 {
   font-family: $roboto;
-  font-size: 8em;
+  font-size: 6em;
   margin-bottom: 0;
+  text-align: center;
+  color: red;
 }
 
 ::-webkit-scrollbar {
