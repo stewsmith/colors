@@ -1,13 +1,117 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent; }
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: white; }
 
+.title {
+  padding: 100px 0 10px;
+  font-weight: 100; }
+
+.subtitle {
+  font-size: 25px;
+  font-weight: 100;
+  padding: 10px 0 40px; }
+
+.push-top {
+  margin-top: 10px; }
+  .push-top--double {
+    margin-top: 20px; }
+  .push-top--triple {
+    margin-top: 30px; }
+  .push-top--quad {
+    margin-top: 40px; }
+
+.push-bottom {
+  margin-bottom: 10px; }
+  .push-bottom--double {
+    margin-bottom: 20px; }
+  .push-bottom--triple {
+    margin-bottom: 30px; }
+  .push-bottom--quad {
+    margin-bottom: 40px; }
+
+.soft-bottom {
+  padding-bottom: 10px; }
+  .soft-bottom--double {
+    padding-bottom: 20px; }
+  .soft-bottom--triple {
+    padding-bottom: 30px; }
+  .soft-bottom--quad {
+    padding-bottom: 40px; }
+
+.text--center {
+  text-align: center; }
+
+.text--white {
+  color: white; }
+
+.text--red {
+  color: #D64933; }
+
+.audience-title {
+  text-transform: capitalize; }
+
+.hero {
+  background-color: #89D2DA; }
+
+.section-padding {
+  padding: 130px 0; }
+
+.input {
+  padding: 14px 50px; }
+
+.button {
+  background-color: #D64933;
+  border: none;
+  font-size: 19px;
+  padding: 11px 30px; }
+
+.container {
+  max-width: 940px;
+  padding: 0 1.064%;
+  margin: 0 auto; }
+
+.flex-container {
+  display: flex; }
+
+.explanation-box {
+  width: 50%;
+  padding: 60px;
+  border: 1px solid #E2E2E2;
+  margin: 0 10px; }
+
+.number {
+  color: #89D2DA; }
+
+ol {
+  list-style-position: inside;
+  counter-reset: item; }
+
+ol li {
+  display: block; }
+
+ol li:before {
+  content: counter(item) ". ";
+  counter-increment: item;
+  color: #89D2DA;
+  font-size: 20px; }
+
+/*ol {*/
+/*}*/
+/*font-size: 20px;*/
+/*color: #7C7C7C;*/
 h1 {
   font-family: "Roboto", sans-serif;
   font-size: 6em;
-  margin-bottom: 0;
-  text-align: center;
-  color: red; }
+  margin-bottom: 0; }
 
 ::-webkit-scrollbar {
   display: none; }

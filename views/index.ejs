@@ -6,21 +6,60 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<header>
-  <h1>Student Spectrum</h1>
-  <div>
-    Students present: <span id="student-count">0</span>
-  </div>
-</header>
-<div class="cta-container">
-  <button id="createSession">Create Session</button>
-  <form id="sessionForm">
-    <input type="text" id="sessionInput">
-    <button id="joinSession">
-      Join Session
-    </button>
+
+<header class="hero section-padding">
+  <h1 class="title text--white text--center">Spectrum</h1>
+  <h2 class="subtitle text--white text--center">Real-time feedback through color</h2>
+  <form id="sessionForm" class="form text--center">
+    <input type="text" id="sessionInput" class="input">
+    <button id="joinSession" class="button text--white">Join Room</button>
   </form>
-</div>
+  <p class="push-top--triple text--white text--center">Or, <a href="" class="text--white">click here </a>to create one</p>
+  <!--<div>-->
+    <!--Students present: <span id="student-count">0</span>-->
+  <!--</div>-->
+</header>
+
+
+
+
+
+
+
+<section class="section-padding">
+  <div class="container">
+    <h2 class="subtitle text--red">How it works</h2>
+    <div class="flex-container">
+      <div class="explanation-box">
+        <h3 class="audience-title soft-bottom--triple text--center text--red">For listeners</h3>
+        <hr>
+        <ol>
+          <li>Enter room number</li>
+          <li>Scroll up to indicate you understand the material or scroll down to indicate you’re having difficulty.</li>
+        </ol>
+      </div>
+      <div class="explanation-box">
+        <h3 class="audience-title soft-bottom--triple text--center text--red">For Presenters</h3>
+        <hr>
+        <ol>
+          <li>Start a new room</li>
+          <li>Invite your listeners</li>
+          <li>React to real-time feedback as you present</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!--<div class="cta-container">-->
+  <!--<button id="createSession">Create Session</button>-->
+<!--</div>-->
 <div id="sessionID"></div>
 <div class="students-container"></div>
 
