@@ -1,4 +1,4 @@
-$green: green;
+// VARIABLES
 $white: white;
 $baby-blue: #89D2DA;
 $gray: #E2E2E2;
@@ -18,7 +18,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 body {
   font: 14px $lucidia;
-  background-color: white;
+  background-color: $white;
 }
 
 .title {
@@ -57,10 +57,6 @@ body {
   &--center { text-align: center; }
   &--white { color: $white; }
   &--red { color: $red; }
-}
-
-.audience-title {
-  text-transform: capitalize;
 }
 
 .hero {
@@ -103,23 +99,31 @@ body {
   color: $baby-blue;
 }
 
+.audience-title {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+
+hr {
+  width: 20%;
+  border-color: $red;
+}
+
 ol {
   list-style-position: inside;
   counter-reset: item;
 }
-ol li { display: block; }
+ol li {
+  display: block;
+  margin: 20px 0;
+}
 ol li:before {
   content: counter(item) ". ";
   counter-increment: item;
   color: $baby-blue;
   font-size: 20px;
 }
-
-/*ol {*/
-/*}*/
-
-/*font-size: 20px;*/
-/*color: #7C7C7C;*/
 
 h1 {
   font-family: $roboto;

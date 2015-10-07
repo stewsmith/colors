@@ -56,9 +56,6 @@ body {
 .text--red {
   color: #D64933; }
 
-.audience-title {
-  text-transform: capitalize; }
-
 .hero {
   background-color: #89D2DA; }
 
@@ -91,12 +88,22 @@ body {
 .number {
   color: #89D2DA; }
 
+.audience-title {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 100; }
+
+hr {
+  width: 20%;
+  border-color: #D64933; }
+
 ol {
   list-style-position: inside;
   counter-reset: item; }
 
 ol li {
-  display: block; }
+  display: block;
+  margin: 20px 0; }
 
 ol li:before {
   content: counter(item) ". ";
@@ -104,10 +111,6 @@ ol li:before {
   color: #89D2DA;
   font-size: 20px; }
 
-/*ol {*/
-/*}*/
-/*font-size: 20px;*/
-/*color: #7C7C7C;*/
 h1 {
   font-family: "Roboto", sans-serif;
   font-size: 6em;
