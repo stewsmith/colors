@@ -1,8 +1,9 @@
 // VARIABLES
-$white: white;
-$baby-blue: #89D2DA;
-$gray: #E2E2E2;
-$red: #D64933;
+$white: #fff;
+$baby-blue: #89d2da;
+$light-gray: #e2e2e2;
+$dark-gray: #7c7c7c;
+$red: #d64933;
 $roboto: 'Roboto', sans-serif;
 $lucidia: 'Lucida Grande', Helvetica, Arial, sans-serif;
 
@@ -27,7 +28,7 @@ body {
 }
 
 .subtitle {
-  font-size: 25px;
+  font-size: 30px;
   font-weight: 100;
   padding: 10px 0 40px;
 }
@@ -91,7 +92,7 @@ body {
 .explanation-box {
   width: 50%;
   padding: 60px;
-  border: 1px solid $gray;
+  border: 1px solid $light-gray;
   margin: 0 10px;
 }
 
@@ -101,6 +102,7 @@ body {
 
 .audience-title {
   text-transform: uppercase;
+  font-size: 19px;
   letter-spacing: 2px;
   font-weight: 100;
 }
@@ -117,6 +119,9 @@ ol {
 ol li {
   display: block;
   margin: 20px 0;
+  font-size: 17px;
+  color: #7C7C7C;
+  line-height: 25px;
 }
 ol li:before {
   content: counter(item) ". ";
