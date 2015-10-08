@@ -9,14 +9,14 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: white; }
+  background-color: #fff; }
 
 .title {
   padding: 100px 0 10px;
   font-weight: 100; }
 
 .subtitle {
-  font-size: 25px;
+  font-size: 30px;
   font-weight: 100;
   padding: 10px 0 40px; }
 
@@ -51,13 +51,13 @@ body {
   text-align: center; }
 
 .text--white {
-  color: white; }
+  color: #fff; }
 
 .text--red {
-  color: #D64933; }
+  color: #d64933; }
 
 .hero {
-  background-color: #89D2DA; }
+  background-color: #89d2da; }
 
 .section-padding {
   padding: 130px 0; }
@@ -66,7 +66,7 @@ body {
   padding: 14px 50px; }
 
 .button {
-  background-color: #D64933;
+  background-color: #d64933;
   border: none;
   font-size: 19px;
   padding: 11px 30px; }
@@ -82,20 +82,21 @@ body {
 .explanation-box {
   width: 50%;
   padding: 60px;
-  border: 1px solid #E2E2E2;
+  border: 1px solid #e2e2e2;
   margin: 0 10px; }
 
 .number {
-  color: #89D2DA; }
+  color: #89d2da; }
 
 .audience-title {
   text-transform: uppercase;
+  font-size: 19px;
   letter-spacing: 2px;
   font-weight: 100; }
 
 hr {
   width: 20%;
-  border-color: #D64933; }
+  border-color: #d64933; }
 
 ol {
   list-style-position: inside;
@@ -104,14 +105,14 @@ ol {
 ol li {
   display: block;
   margin: 20px 0;
-  font-size: 20px;
+  font-size: 17px;
   color: #7C7C7C;
-  line-height: 29px; }
+  line-height: 25px; }
 
 ol li:before {
   content: counter(item) ". ";
   counter-increment: item;
-  color: #89D2DA;
+  color: #89d2da;
   font-size: 20px; }
 
 h1 {
