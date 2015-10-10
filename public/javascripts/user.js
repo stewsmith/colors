@@ -30,6 +30,6 @@ $(window).scroll(function() {
   });
 });
 
-socket.on('ham', function(studentCount) {
+socket.on('setStudentId', function(studentCount) {
   $('body').attr('id', studentCount);
 });

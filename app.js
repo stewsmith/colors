@@ -42,8 +42,8 @@ io.sockets.on('connection', function(socket) {
     var sessionId = obj.sessionId;
     socket.broadcast.to(sessionId).emit('rgb', obj);
   });
-  // Set Session ID
-  socket.on('create', function(sessionId) {
+  // Create Room
+  socket.on('createRoom', function(sessionId) {
     if(socket.join(sessionId)) {
       rooms[sessionId] = {};
       rooms[sessionId]['studentCount'] = 0;
@@ -56,7 +56,7 @@ io.sockets.on('connection', function(socket) {
         rooms[sessionId]['studentCount']++;
         socket.studentId = rooms[sessionId]['studentCount'];
         socket.sessionId = sessionId;
-        socket.emit('ham', rooms[sessionId]['studentCount']);
+        socket.emit('setStudentId', rooms[sessionId]['studentCount']);
         socket.broadcast.to(sessionId).emit('createStudent', rooms[sessionId]['studentCount']);
       }
     }

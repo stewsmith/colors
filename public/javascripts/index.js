@@ -8,15 +8,3 @@ $('#sessionForm').on('submit', function(e) {
   var sessionId = $('#sessionInput').val();
   window.location.href = 'user?sessionID=' + sessionId;
 });
-
-$('.js-create-session').on('click', function(e) {
-  window.location.href = '/present'
-  //socket.emit('create', sessionID);
-  //$('#sessionID').append(sessionID);
-  //$('#sessionForm').remove();
-  //$(this).remove();
-});
-
-socket.on('createStudent', function(studentCount) {
-  $('.students-container').prepend("<div id='student-" + studentCount + "' class='student'></div>");
-});
