@@ -31,7 +31,7 @@ server.listen(app.get('port'), function() {
 });
 
 app.get('/', routes.index);
-app.get('/collector', routes.collector);
+app.get('/present', routes.collector);
 app.get('/user', routes.user);
 
 var rooms = {};

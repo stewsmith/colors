@@ -8,11 +8,11 @@ exports.index = function(req, res){
 };
 
 /*
- * GET collector page.
+ * GET present page.
  */
 
 exports.collector = function(req, res){
-  res.render('collector', { title: 'collector' });
+  res.render('present', { title: 'present' });
 };
 
 /*
