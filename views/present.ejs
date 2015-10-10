@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head>
+  <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <div class="hero">
+    <h2 class="subtitle text--white text--center">
+      You are presenting to room: <span class="js-session-id"></span>
+    </h2>
+  </div>
+  <section class="container">
+    <div class="students-container"></div>
+  </section>
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="/javascripts/present.js"></script>
-  </head>
-  <body>
-      <h1>Presentation Mode</h1>
-      <div id="session"></div>
-      <div class="students-container"></div>
   </body>
 </html>

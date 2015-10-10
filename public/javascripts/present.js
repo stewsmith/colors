@@ -1,6 +1,7 @@
 var socket = io.connect('/');
 var sessionId = location.search.substring(location.search.indexOf('=') + 1)
 socket.emit('createRoom', sessionId);
+$('.js-session-id').text(sessionId);
 
 // Student joins
 socket.on('createStudent', function(studentCount) {

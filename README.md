@@ -1,6 +1,6 @@
-Student Spectrum
+Spectrum
 ======
-Student Spectrum allows you to visualize student understanding in real time!
+Spectrum allows you to visualize audience understanding in real time!
 
 ### Setup:  
 1. npm i  
@@ -10,7 +10,6 @@ Student Spectrum allows you to visualize student understanding in real time!
 1. Styling and design
 2. implement Grunt watch
 3. Nav
-4. Description on first visit
 5. Name project (spectrum)
 6. How do I explain this? (general)
 7. How do teachers use this?

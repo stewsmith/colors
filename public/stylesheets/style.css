@@ -63,7 +63,11 @@ body {
   padding: 130px 0; }
 
 .input {
-  padding: 14px 50px; }
+  width: 260px;
+  height: 38px;
+  padding: 2px 11px;
+  font-size: 19px;
+  color: #7C7C7C; }
 
 .button {
   background-color: #d64933;
