@@ -7,10 +7,5 @@ Spectrum allows you to visualize audience understanding in real time!
 2. grunt  
 
 ### TODO  
-1. Styling and design
-2. implement Grunt watch
-3. Nav
-5. Name project (spectrum)
-6. How do I explain this? (general)
-7. How do teachers use this?
-7. How do students use this?
+1. implement Grunt watch
+1. make student scroll more clear (start in middle, gray background, directions that fade on scroll)
