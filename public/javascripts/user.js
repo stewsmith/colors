@@ -1,23 +1,8 @@
 var socket = io.connect('/');
+var sessionId = location.search.substring(location.search.indexOf('=') + 1)
 
-function getSearchParameters() {
-  var prmstr = window.location.search.substr(1);
-  return prmstr != null && prmstr != '' ? transformToAssocArray(prmstr) : {};
-}
-
-function transformToAssocArray( prmstr ) {
-  var params = {};
-  var prmarr = prmstr.split('&');
-  for (var i = 0; i < prmarr.length; i++) {
-    var tmparr = prmarr[i].split('=');
-    params[tmparr[0]] = tmparr[1];
-  }
-  return params;
-}
-
-var params = getSearchParameters();
-socket.emit('userJoin', params.sessionID);
-$('#sessionID').append(params.sessionID);
+socket.emit('userJoin', sessionId);
+$('#sessionID').append(sessionId);
 
 $(window).scroll(function() {
   var rgb = $('body').css('background-color');
@@ -26,7 +11,7 @@ $(window).scroll(function() {
   socket.emit('scoreChange', {
     rgb: rgb,
     studentId: studentId,
-    sessionId: params.sessionID
+    sessionId: sessionId
   });
 });
 
