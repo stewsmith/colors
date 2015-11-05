@@ -9,3 +9,4 @@ Spectrum allows you to visualize audience understanding in real time!
 ### TODO  
 1. implement Grunt watch
 1. make student scroll more clear (start in middle, gray background, directions that fade on scroll)
+1. Error for student if room doesn't exist

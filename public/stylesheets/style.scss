@@ -83,6 +83,19 @@ body {
   padding: 11px 30px;
 }
 
+.fa {
+  &.fa-long-arrow-up,
+  &.fa-long-arrow-down {
+    font-size: 25em;
+    position: fixed;
+    color: $dark-gray;
+    left: 47%;
+  }
+  &.fa-long-arrow-down {
+    top: 53%;
+  }
+}
+
 .container {
   max-width: 940px;
   padding: 0 1.064%;

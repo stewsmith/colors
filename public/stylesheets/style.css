@@ -75,6 +75,12 @@ body {
   font-size: 19px;
   padding: 11px 30px; }
 
+.fa.fa-long-arrow-up,
+.fa.fa-long-arrow-down {
+  font-size: 25em;
+  position: fixed;
+  color: #7c7c7c; }
+
 .container {
   max-width: 940px;
   padding: 0 1.064%;
