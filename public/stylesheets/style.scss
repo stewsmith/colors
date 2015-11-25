@@ -83,16 +83,18 @@ body {
   padding: 11px 30px;
 }
 
+.fixed-center {
+  position: fixed;
+  left: 47%;
+  text-align: center;
+  &.bottom { top: 53%; }
+}
+
 .fa {
   &.fa-long-arrow-up,
   &.fa-long-arrow-down {
-    font-size: 25em;
-    position: fixed;
+    font-size: 13em;
     color: $dark-gray;
-    left: 47%;
-  }
-  &.fa-long-arrow-down {
-    top: 53%;
   }
 }
 
@@ -171,6 +173,7 @@ h1 {
 
 .student-scroller {
   min-height: 2000px;
+  background: $light-gray;
 }
 
 a {

@@ -75,10 +75,16 @@ body {
   font-size: 19px;
   padding: 11px 30px; }
 
+.fixed-center {
+  position: fixed;
+  left: 47%;
+  text-align: center; }
+  .fixed-center.bottom {
+    top: 53%; }
+
 .fa.fa-long-arrow-up,
 .fa.fa-long-arrow-down {
-  font-size: 25em;
-  position: fixed;
+  font-size: 13em;
   color: #7c7c7c; }
 
 .container {
@@ -144,7 +150,8 @@ h1 {
   border: 3px solid black; }
 
 .student-scroller {
-  min-height: 2000px; }
+  min-height: 2000px;
+  background: #e2e2e2; }
 
 a {
   color: #00B7FF; }
