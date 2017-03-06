@@ -4,7 +4,7 @@ Spectrum allows you to visualize audience understanding in real time!
 
 ### Setup:  
 1. `npm i`
-2. `npi -g grunt`
+2. `npm i -g grunt`
 3. `grunt`  
 
 ### Deploy:
