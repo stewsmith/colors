@@ -3,8 +3,9 @@ Spectrum
 Spectrum allows you to visualize audience understanding in real time!
 
 ### Setup:  
-1. `npm i`  
-2. `grunt`  
+1. `npm i`
+2. `npi -g grunt`
+3. `grunt`  
 
 ### Deploy:
 `git push heroku master`
